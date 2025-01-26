@@ -1,0 +1,43 @@
+<%= form_with(model: nutrient, local: true) do |form| %>
+  <% if nutrient.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(nutrient.errors.count, "error") %> prohibited this nutrient from being saved:</h2>
+
+      <ul>
+      <% nutrient.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+  
+  <div class="form-group">
+    <%= form.label :name %>
+    <%= form.text_field :name, id: :nutrient_name, class: "form-control" %>
+  </div>
+  <hr>
+  <div class="form-group">
+    <%= form.label "What are you trying to do?" %>
+    <div style="display: flex">
+      <%= form.radio_button :moreOrLess, "avoid", id: :nutrient_moreOrLess %>
+      <%= form.label :moreOrLess, "I'm trying to cut back on this.", :value => "avoid", style: "font-weight: normal;font-style: italic; margin-left:5px;" %>
+    </div>
+    <div style="display: flex">
+      <%= form.radio_button :moreOrLess, "increase", id: :nutrient_moreOrLess, :checked => "increase" %>
+      <%= form.label :moreOrLess, "I'm trying to cosume more of this.", :value => "increase", style: "font-weight: normal;font-style: italic; margin-left:5px;" %>
+    </div>
+  </div>
+  <hr>
+  <div class="form-group">
+    <%= form.label :goal %>
+    <%= form.text_area :goal, id: :nutrient_goal, class: "form-control" %>
+  </div>
+
+  <div class="form-group">
+    <%= form.hidden_field :user_id, value: current_user.id %>
+  </div>
+  <br>
+  <div class="actions">
+    <%= form.submit "Submit", class: "btn button-primary" %>
+  </div>
+<% end %>

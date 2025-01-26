@@ -1,0 +1,142 @@
+/*
+ * This is a manifest file that'll be compiled into application.css, which will include all the files
+ * listed below.
+ *
+ * Any CSS and SCSS file within this directory, lib/assets/stylesheets, or any plugin's
+ * vendor/assets/stylesheets directory can be referenced here using a relative path.
+ *
+ * You're free to add application-wide styles to this file and they'll appear at the bottom of the
+ * compiled file so the styles you add here take precedence over styles defined in any other CSS/SCSS
+ * files in this directory. Styles in this file should be added after the last require_* statement.
+ * It is generally better to create a new file per style scope.
+ *= require simple_calendar
+ *= require_tree .
+ *= require_self
+ */
+@import 'bootstrap-sprockets';
+@import 'bootstrap';
+@import "font-awesome";
+body{
+	 background-color: #87D37C;
+	 font-size: 1.7em;
+}
+
+#error_explanation{
+	border-radius: 	10px;
+	border:2px solid red;
+	padding: 	20px;
+	margin: 	20px 0;
+	color: #CF000F;
+	background-color: #EC644B;
+}
+h1{
+	font-size: 45px;
+	margin: 20px 0 30px 0;
+}
+nav{
+	display: flex;
+	height: 45px;
+	align-items: center;
+	opacity: .95;
+}
+a,
+a:focus,
+a:hover{
+	text-decoration: none;
+	color: #95A5A6;
+}
+.container{
+	max-width: 700px;
+	padding: 30px;
+}
+.btn{
+	border-radius: 17px;
+	font-weight: bold;
+	font-size: 12px;
+	padding: 8px 14px;
+}
+.btn-default,
+.btn-default:visited,
+.btn-default a,
+.btn-default a:visited{
+	color: #6C7A89;
+}
+.button-primary,
+.button-primary:visited{
+	background-color: #2C544D;
+	color: #F2F1EF;
+	border-style: none;
+}
+.destroy{
+	padding: 6px 8px;
+}
+.form-control{
+	max-width: 	600px;
+}
+/***********************************************************************homepage****/
+main{
+	background-color: #F2F1EF;
+	border-radius: 3px;
+	margin: auto;
+	margin-top: 70px;
+	margin-bottom: 20px;
+	padding: 0 15px;
+}
+#new-nutrient{
+	margin: 5px 20px 0 0;
+}
+
+
+/************************************************************************login***/
+#login-welcome{
+	margin: 30px 0;
+}
+
+
+
+@media screen and (max-width: 770px){
+	nav .container{width: 94%;}
+	main.container{max-width: 650px;width: 94%;margin-top: 70px; padding: 10px}
+	h1{font-size: 30px;}
+	#nutrient-index-heading{display: flex;flex-direction: column-reverse; align-items: center;}
+	div#nutrient-index-heading h1{margin-bottom: 0}
+	button#new-nutrient{float: none !important;margin: 20px 0;}
+	.well{padding:10px 20px;margin-bottom: 15px;}
+	.well h2{margin-top: 10px;}
+	#login-welcome{font-size:45px;margin-bottom: 10px}
+
+	.simple-calendar{font-size: 10px;}
+	.simple-calendar .day{height: 40px;}
+	.rating{height: 25px;}
+   
+}
+@media screen and (max-width: 600px){
+	nav .container{padding: 0;}
+}
+
+/************************************************************************tutorial***/
+#tutorial{
+	margin: auto;
+	margin-top: 60px;
+	max-width: 500px;
+	border: 2px solid white;
+	border-radius: 15px;
+	display: none;
+}
+.carousel{
+	width: 96%;
+	margin: auto;
+}
+.carousel .item{
+	max-height: 600px;
+	margin: 0 auto;
+}
+.carousel-caption{
+	background-color: grey;
+	border-radius: 7px;
+	opacity: .8;
+}
+.carousel .d-block.w-100{
+	margin-top: 1%;
+	margin: auto;
+}

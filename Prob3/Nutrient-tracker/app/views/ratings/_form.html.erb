@@ -1,0 +1,56 @@
+<%= form_with(model: rating, local: true) do |form| %>
+  <% if rating.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(rating.errors.count, "error") %> prohibited this rating from being saved:</h2>
+
+      <ul>
+      <% rating.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+  <div class="form-group">
+    <%= form.select :nutrient_id, current_user.nutrients.collect { |c| [c.name, c.id]}, {include_blank: "Please select a nutrient." }, class: "form-control" %>
+  </div>
+  <%= form.label "Please rate how well did on your goal today from bad to great:" %>
+  <div class="form-group" style="display: flex; justify-content: space-between; max-width: 400px;" >
+    
+      <div>
+        <%= form.label "rating1", 1 %>
+        <%= form.radio_button :rating, 1, id: "rating1" %>
+      </div>
+      <div>
+        <%= form.label "rating2",  2 %>
+        <%= form.radio_button :rating, 2, id: "rating2" %>
+      </div>
+      <div>
+        <%= form.label "rating3", 3 %>
+        <%= form.radio_button :rating, 3, id: "rating3" %>
+      </div>
+      <div>
+        <%= form.label "rating4", 4 %>
+        <%= form.radio_button :rating, 4, id: "rating4" %>
+      </div>
+      <div>
+        <%= form.label "rating5", 5 %>
+        <%= form.radio_button :rating, 5, id: "rating5" %>
+      </div>
+  </div>
+  <div id="explain-rating"></div>
+  <br>
+  <div class="form-group">
+    <%= form.label :notes %>
+    <p style="font-size:.9em"><em>How did you feel physically today? Was your thinking foggy or clear? etc.</em></p>
+    <%= form.text_area :notes, id: :rating_notes, class: "form-control" %>
+  </div>
+  <br>
+  <div class="form-group">
+    <%= form.label :date %>
+    <%= form.date_field :date, id: :rating_date, max: Date.today, class: "form-control" %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit "Submit", class: "btn button-primary" %>
+  </div>
+<% end %>

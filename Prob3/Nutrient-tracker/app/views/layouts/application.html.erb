@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Nutrient Tracker</title>
+    <%= csrf_meta_tags %>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="shortcut icon" type="image/x-icon" href="https://upload.wikimedia.org/wikipedia/commons/thumb/f/f6/Approve.svg/256px-Approve.svg.png" />
+    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+  </head>
+
+  <body>
+  	<nav class="navbar-fixed-top navbar-default">
+	    <div class="container">
+	    	<% if user_signed_in? %>
+		      <%= link_to "Home", root_path, id: "Home-btn", class: "btn button-primary" %>
+		      <%= link_to 'New Daily Rating', new_rating_path, class: "btn btn-default" %>
+
+					<div class="dropdown pull-right">
+					  <button class="btn button-primary dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+					    Tools <span class="caret"></span>
+					  </button>
+					  <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
+	            <li><%= link_to "Edit Profile", edit_user_registration_path %></li>
+	            <li><%= link_to "Sign Out", destroy_user_session_path, :method => 'delete' %></li>
+	            <li><%= link_to "My Journal", journal_bydate_path %></li>
+					  </ul>
+					</div>
+
+	      <% else %>
+	      	<%= link_to "Log in", new_session_path(resource_name), class: 'btn button-primary' %>
+				  <%= link_to "Sign up", new_registration_path(resource_name), class: 'btn button-primary' %>
+
+			    <div class="pull-right">
+				    <button class="btn btn-danger" id="tutorial-toggle">Tutorial</button>
+				<% end %>
+    			</div>
+ 		</nav>
+
+		<% if !user_signed_in? %>
+  		<div id='tutorial'>
+				<div id="carouselExampleIndicators" class="carousel slide" id="tutorial" data-ride="carousel">
+		      <ol class="carousel-indicators">
+		        <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
+		        <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
+		        <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
+		        <li data-target="#carouselExampleIndicators" data-slide-to="3"></li>
+		        <li data-target="#carouselExampleIndicators" data-slide-to="4"></li>
+		        <li data-target="#carouselExampleIndicators" data-slide-to="5"></li>
+		      </ol>
+		      <div class="carousel-inner">
+		        <div class="item active">
+		          <img><%= image_tag 'login.jpg', class:"d-block w-100", alt:"First slide"%>
+		          <div class="carousel-caption d-none d-md-block">
+		            <h4>Login or Sign Up Page</h4>
+		            <p>User authentication using devise gem.</p>
+		          </div>
+		        </div>
+		        <div class="item">
+		          <%= image_tag 'nutrients.jpg', class:"d-block w-100", alt:"Second slide"%>
+		          <div class="carousel-caption d-none d-md-block">
+		            <h4>Nutrients List</h4>
+		            <p>Your home page shows a run down of what you're tracking.</p>
+		          </div>
+		       	</div>
+		        <div class="item">
+		          <%= image_tag 'nutrient-details.jpg', class:"d-block w-100", alt:"Third slide"%>
+		          <div class="carousel-caption d-none d-md-block">
+		            <h4>Nutrient Details</h4>
+		            <p>Tiles darken the better your daily rating is. Calendar implemented with a simple-calendar gem.</p>
+		          </div>
+		        </div>
+		        <div class="item">
+		          <%= image_tag 'new-nutrient.jpg', class:"d-block w-100", alt:"Fourth slide"%>
+		          <div class="carousel-caption d-none d-md-block">
+		            <h4>New Nutrient</h4>
+		            <p>Be as vague or specific as you like when setting your goals.</p>
+		          </div>
+		        </div>
+		        <div class="item">
+		          <%= image_tag 'new-rating.jpg', class:"d-block w-100", alt:"Fifth slide"%>
+		          <div class="carousel-caption d-none d-md-block">
+		            <h4>New Rating</h4>
+		            <p>Notes allow users to record how they are affected when doing well or poorly on their goals.</p>
+		          </div>
+		        </div>
+		        <div class="item">
+		          <%= image_tag 'journal.jpg', class:"d-block w-100", alt:"Sixth slide"%>
+		          <div class="carousel-caption d-none d-md-block">
+		            <h4>Journal</h4>
+		            <p>View entries by rating to identify trends in how doing well or poorly on your goals affects you.</p>
+		          </div>
+		        </div>
+		      </div>
+		      <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
+		        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+		        <span class="sr-only">Previous</span>
+		      </a>
+		      <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
+		        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+		        <span class="sr-only">Next</span>
+		      </a>
+		    </div>
+		  </div>
+		<% end %>
+
+    <main class="container">
+    	<%= yield %>
+    </main>
+  </body>
+</html>
