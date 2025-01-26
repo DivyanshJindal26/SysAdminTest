@@ -1,0 +1,42 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+body {
+  @apply bg-zinc-100 text-zinc-900 font-normal text-base w-screen relative overflow-x-hidden scroll-smooth
+}
+
+::-webkit-scrollbar {
+  @apply w-2.5
+}
+
+::-webkit-scrollbar-track {
+  @apply bg-zinc-100
+}
+
+::-webkit-scrollbar-thumb {
+  @apply bg-amber-500
+}
+
+::-webkit-scrollbar-thumb:hover {
+  @apply bg-amber-600
+}
+
+@layer utilities {
+  .text-balance {
+    text-wrap: balance;
+  }
+
+  .fade-in-page {
+    animation: fade-in 200ms ease-in-out;
+  }
+
+  @keyframes fade-in {
+    0% {
+      opacity: 0.5;
+    }
+    100% {
+      opacity: 1;
+    }
+  }
+}

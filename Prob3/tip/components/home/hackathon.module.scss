@@ -1,0 +1,13 @@
+.progressBar {
+  @apply h-full bg-zinc-600;
+  animation: progressLoad 5s ease-in-out;
+}
+
+@keyframes progressLoad {
+  0% {
+    width: 0;
+  }
+  100% {
+    width: 100%;
+  }
+}
