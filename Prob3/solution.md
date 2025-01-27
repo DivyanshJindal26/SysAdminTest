@@ -29,3 +29,8 @@
 - well we are back again.
 - i don't know why but a LOT, like A LOOOT of times, the website was "docker-compose build"-ing correctly, and even that npm run build was working fine. It was showing all the elements built and stuff. But when I went to turn the website on using docker-compose up, it kept saying that next was not found. From what I can infer, it was because I was specifying the volumes in the dockerfile and it was overwriting it somehow. When i removed that and just put the volume as [], it then worked. [Error](https://pastebin.com/ctDTPNEc)
 - honestly this is the only error i can remember in this except the multiple interations of the dockerfile lol cuz its a very very new repo and hence nothing was broken unlike the previous one ;-;
+
+# reason for bridge
+- I used the docker network type bridge for both the ruby on rails and the nextjs project.
+- I have used bridge on the ruby on rails project because that projec relied on the redisdb and sql and the bridge networks allowed easier and isolated communication between them keeping everything private and seperate and prevents the hot network from viewing it. it also doesn't expose useless ports to the host providing a secure space and preventing data leaks from the db. It 
+- For the nextjs project it has more or less the same reasoning. The TIP website involved google sign up which, if exposed, can lead to major issues. Also the backend could be connected to a backend api in the future if needed and using bridge will only expose the neede ports to the public. The nextjs project involved firebase which is easier and more secure in a bridge network. bridge is suitable for web apps which majorly involve the browser and the docker's nextjs container. 
