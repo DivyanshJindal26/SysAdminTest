@@ -9,7 +9,7 @@
 - Steps for tht were:
 1) 'Create Task' 
 2) Wrote the name as "System Process" to disguise it even if someone manages to find it.
-3) "Run with highest priveledges", Hidden and configure for windows 10
+3) Hidden and configure for windows 10
 4) Go to Triggers tab and set the trigger to "On startup" so the script automatically starts when the computer is powered on hehe.
 5) Go to Actions and set it to strt a program. Chose the python.exe file in it and put the path of the python file i just coded.
 6) Set the conditions to always be on no matter if the user is signed in or not.
@@ -18,3 +18,4 @@
 # What else I did
 - Hid all the errors, no logs using print. Only stores the file contents in the System/Logs
 - If azure doesn't work, itll simply save the folder and ignore the azure thing.
+- Using task scheduler doesn't even show up in Task Manager which is amazing for what we are doing.

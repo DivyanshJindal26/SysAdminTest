@@ -29,6 +29,7 @@ os.makedirs(localStorage, exist_ok=True)
 
 def uploadFolder(file_path):
     try:
+        pass
         file_name = os.path.basename(file_path)
         blob_client = blobClient.get_blob_client(container=container_name, blob=f"{time.time()}-{file_name}")
         with open(file_path, "rb") as file:
