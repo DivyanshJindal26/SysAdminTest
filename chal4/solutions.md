@@ -5,19 +5,19 @@
 - Then started everything up using `sudo docker-compose build` and then `sudo docker-compose up`.
 
 # issues/hurdles
-- first try to turning the server on. Error in step 6 while building the frontend. [Error](https://pastebin.com/Zns7r0uA)
+- first try to turning the server on. Error in step 6 while building the frontend. [Error](https://pastebin.com/raw/Zns7r0uA)
 - After focusing on this error and rebuilding the frontend's packages by deleting the package-lock file everything built correct;y
 - Doing `sudo docker-compose up`, turns on the frontend correctly, completing exercise 1.12.
-- Got error while turning the redis on [Error](https://pastebin.com/yeApkV2M)
+- Got error while turning the redis on [Error](https://pastebin.com/raw/yeApkV2M)
 - The redis was showing to turn on successsfully int he terminal by after going into the docker container, and running ping didnt work thru the redis cli meaning it wasnt listening.
 - I had to explicitly allow the redis page using `sudo iptables -A INPUT -p tcp --dport 6379 -j ACCEPT` and then restart everything which finally worked.
-- Well kinda. This ended up fucking wiith the backend meaning the backend wasn't even turning on and automatically shutting down immediately [docker ps](https://pastebin.com/bAcLXgxx)
-- Upon further and very very long thinking and shitting my brain for 2h I found out in the logs that some module wasn't getting installed [Error](https://pastebin.com/CbQbzfpy)
+- Well kinda. This ended up fucking wiith the backend meaning the backend wasn't even turning on and automatically shutting down immediately [docker ps](https://pastebin.com/raw/bAcLXgxx)
+- Upon further and very very long thinking and shitting my brain for 2h I found out in the logs that some module wasn't getting installed [Error](https://pastebin.com/raw/CbQbzfpy)
 - So upon advice from Mr. ChatGPT, I updated the dockerfile to use `debian:bullseye-slim` instead of `gcr.io/distroless/base-debian10` as that doesn't include the needed `glibc` versions. But that didn't work either so I had to remake the dockerfile for the backend. Used the image `alpine` and explicilty installed the rqeuired `glibc`.
-- After that everything was working in theory, and everything built correctly. And lo and behold visitng the page on localhost:3000 (frontend) work and displayed the frontend. BUTTT nothing was working on it haha. [Logs](https://pastebin.com/PV10FT5K)
+- After that everything was working in theory, and everything built correctly. And lo and behold visitng the page on localhost:3000 (frontend) work and displayed the frontend. BUTTT nothing was working on it haha. [Logs](https://pastebin.com/raw/PV10FT5K)
 - So then I learnt that the API requests were being sent to the same url localhost:3000 while my backend was actually hosted on localhost:8080. So I used a nginx proxy to reroute the requests. I used the 80 port to accept all the requests. If the url was localhost:80/api/.. it redirected the request to localhost:8080/... (the backend) while removing the 'api' part cuz thats how the backend is setup.
 - For the frontend, any other requests except the 'api' ones were redirected to the 3000 port but as I was using the 80 port to redirect te frontend as well, I used the 'frontend-service:80' in the nginx.conf file.
-- Initially I had hosted the nginx proxy on the port 3000 only cuz I didn't really know how it works, which gave me an error cuz the frontend was also hsoted on the 3000 port. Then I used the 80 port for the nginx. [Error](https://pastebin.com/A1d2dcsn)
+- Initially I had hosted the nginx proxy on the port 3000 only cuz I didn't really know how it works, which gave me an error cuz the frontend was also hsoted on the 3000 port. Then I used the 80 port for the nginx. [Error](https://pastebin.com/raw/A1d2dcsn)
 - So the frontend and the backend was now working on the 80 port. If the request was sent to localhost:80/api/... it got redirected to the backend and it also removed the 'api' part in it cuz thats how the backend is setup.
 
 - After this, most of the frontend and the backend was working successfully. 

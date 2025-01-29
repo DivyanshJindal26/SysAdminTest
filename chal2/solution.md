@@ -20,3 +20,5 @@ First step was installing docker in my Ubuntu system.
 - Opening the cron expression editor using `crontab -e`
 - Type the code in 'cronexp.txt' file in there and save everything.
 - Checked cron expressions running using `crontab -l`
+
+- I didn't really get much issues for this problem ;-;
